@@ -2,14 +2,16 @@ package com.example.freetoplaygamesekg;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
+import java.io.Serializable;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class GameModel {
+public class GameModel implements Serializable {
+
+    // All the stuff
     @SerializedName("id")
     private int id;
     @SerializedName("title")
@@ -36,16 +38,12 @@ public class GameModel {
     private String releaseDate;
     @SerializedName("freetogame_profile_url")
     private String freetogameProfileUrl;
-    @SerializedName("minimum_system_requirements")
-    private MinimumSystemRequirements minimumSystemRequirements;
-    @SerializedName("screenshots")
-    private List<Screenshot> screenshots = null;
 
+    // Initializer
     public GameModel(final int id, final String title, final String thumbnail, final String status,
                      final String shortDescription, final String description, final String gameUrl,
                      final String genre, final String platform, final String publisher, final String developer,
-                     final String releaseDate, final String freetogameProfileUrl,
-                     final MinimumSystemRequirements minimumSystemRequirements, final List<Screenshot> screenshots) {
+                     final String releaseDate, final String freetogameProfileUrl) {
         setId(id);
         setTitle(title);
         setThumbnail(thumbnail);
@@ -59,7 +57,13 @@ public class GameModel {
         setDeveloper(developer);
         setReleaseDate(releaseDate);
         setFreetogameProfileUrl(freetogameProfileUrl);
-        setMinimumSystemRequirements(minimumSystemRequirements);
-        setScreenshots(screenshots);
+    }
+
+    public String printGameModelDetails() {
+//        if (publisher == "") {
+//            publisher = "N/A";
+//        }
+        return "\nStatus: " + status + "\nGenre: " + genre + "\n\n" + description
+                + "\n\nPlatform: " + platform + "\nDeveloper: " + developer + "\nRelease Date: " + releaseDate;
     }
 }
