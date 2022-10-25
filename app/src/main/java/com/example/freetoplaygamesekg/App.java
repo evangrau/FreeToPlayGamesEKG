@@ -1,38 +1,18 @@
 package com.example.freetoplaygamesekg;
 
 import android.app.Application;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
+import android.content.Context;
 
 public class App extends Application {
+    private static Context mContext;
 
-    private RequestQueue requestQueue;
-    private static App mInstance;
-
+    @Override
     public void onCreate() {
         super.onCreate();
-        mInstance = this;
+        mContext = this;
     }
 
-    public static synchronized App getInstance() {
-        return mInstance;
-    }
-
-    public RequestQueue getRequestQueue() {
-        if (requestQueue == null) {
-            requestQueue = Volley.newRequestQueue(getApplicationContext());
-        }
-        return requestQueue;
-    }
-
-    public void addToRequestQueue(Request request, String tag) {
-        request.setTag(tag);
-        getRequestQueue().add(request);
-    }
-
-    public void cancelAllRequests(String tag) {
-        getRequestQueue().cancelAll(tag);
+    public static Context getContext() {
+        return mContext;
     }
 }

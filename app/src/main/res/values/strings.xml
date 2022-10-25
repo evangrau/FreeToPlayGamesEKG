@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FreeToPlayGamesEKG</string>
+    <string name="rand_button">Get a random game</string>
 </resources>
